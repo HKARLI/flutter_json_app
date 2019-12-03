@@ -84,6 +84,70 @@ class _HomeState extends State<Home> {
           ),
         ],
       )),
+      body: new ListView(
+        children: <Widget>[
+          new Container(
+            height: 250.0,
+            margin: EdgeInsets.all(15.0),
+            child: new FutureBuilder(
+                future: getAllData(),
+                builder: (BuildContext c, AsyncSnapshot snapshot) {
+                  if (snapshot.data == null) {
+                    return Center(
+                      child: new Text("Loading data"),
+                    );
+                  } else {
+                    return ListView.builder(
+                        itemCount: snapshot.data.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (BuildContext c, int index) {
+                          return Card(
+                            elevation: 10.0,
+                            child: new Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                new Image.network(
+                                  snapshot.data[index].url,
+                                  height: 150.0,
+                                  width: 150.0,
+                                  fit: BoxFit.cover,
+                                ),
+                                new SizedBox(
+                                  height: 7.0,
+                                ),
+                                new Container(
+                                    margin: EdgeInsets.all(6.0),
+                                    height: 50.0,
+                                    child: new Row(
+                                      children: <Widget>[
+                                        new Container(
+                                            child: new CircleAvatar(
+                                                backgroundColor:
+                                                    Colors.lightBlueAccent,
+                                                child: new Text(snapshot
+                                                    .data[index].id
+                                                    .toString()))),
+                                        new SizedBox(
+                                          width: 6.0,
+                                        ),
+                                        new Container(
+                                          width: 80.0,
+                                          child: Text(
+                                            snapshot.data[index].title,
+                                            maxLines: 1,
+                                          ),
+                                        )
+                                      ],
+                                    ))
+                              ],
+                            ),
+                          );
+                        });
+                  }
+                }),
+          ),
+        ],
+      ),
     );
   }
 }
