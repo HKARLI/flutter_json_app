@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import './Model/Data.dart';
+import 'DetailPage.dart';
+import 'Model/Data.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
@@ -180,13 +181,22 @@ class _HomeState extends State<Home> {
                                     ),
                                     new Expanded(
                                         flex: 2,
-                                        child: new Text(
-                                          snapshot.data[index].title,
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                            fontSize: 16.0,
-                                          ),
-                                        )),
+                                        child: InkWell(
+                                            child: new Text(
+                                              snapshot.data[index].title,
+                                              maxLines: 2,
+                                              style: TextStyle(
+                                                fontSize: 16.0,
+                                              ),
+                                            ),
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                  new MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              c) =>
+                                                          Detail(snapshot
+                                                              .data[index])));
+                                            })),
                                     new Expanded(
                                         flex: 1,
                                         child: Align(
