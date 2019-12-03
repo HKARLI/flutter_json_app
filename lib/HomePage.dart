@@ -146,6 +146,63 @@ class _HomeState extends State<Home> {
                   }
                 }),
           ),
+          new SizedBox(
+            height: 7.0,
+          ),
+          new Container(
+              height: MediaQuery.of(context).size.height,
+              margin: EdgeInsets.all(10.0),
+              child: new FutureBuilder(
+                  future: getAllData(),
+                  builder: (BuildContext c, AsyncSnapshot snapshot) {
+                    if (snapshot.data == null) {
+                      return Center(child: Text("Loading data"));
+                    } else {
+                      return ListView.builder(
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext c, int index) {
+                            return Card(
+                              elevation: 7.0,
+                              child: Container(
+                                height: 80.0,
+                                child: new Row(
+                                  children: <Widget>[
+                                    new Expanded(
+                                      flex: 1,
+                                      child: new Image.network(
+                                        snapshot.data[index].url,
+                                        height: 100.0,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 6.0,
+                                    ),
+                                    new Expanded(
+                                        flex: 2,
+                                        child: new Text(
+                                          snapshot.data[index].title,
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                            fontSize: 16.0,
+                                          ),
+                                        )),
+                                    new Expanded(
+                                        flex: 1,
+                                        child: Align(
+                                            alignment: Alignment.center,
+                                            child: CircleAvatar(
+                                              child: new Text(snapshot
+                                                  .data[index].id
+                                                  .toString()),
+                                            ))),
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
+                    }
+                  }))
         ],
       ),
     );
