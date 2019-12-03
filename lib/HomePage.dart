@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import './Model/Data.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'dart:async';
 
 class Home extends StatefulWidget {
   @override
@@ -6,6 +10,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Future<List<Data>> getAllData() async {
+    var api = "https://jsonplaceholder.typicode.com/photos";
+
+    var data = await http.get(api);
+
+    var jsonData = jsonDecode(data.body);
+
+    List<Data> listOf = [];
+
+    for (var i in jsonData) {
+      Data data = new Data(i["id"], i["title"], i["url"], i["thumbnailUrl"]);
+      listOf.add(data);
+    }
+
+    return listOf;
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
