@@ -4,7 +4,9 @@ A new Flutter application.
 
 # demo
 
-![Screenshot](https://raw.githubusercontent.com/HKARLI/flutter_json_app/master/images/drawe.png)
+![Screenshot](https://raw.githubusercontent.com/HKARLI/flutter_json_app/master/images/drawer.png)
+![Screenshot](https://raw.githubusercontent.com/HKARLI/flutter_json_app/master/images/home.png)
+![Screenshot](https://raw.githubusercontent.com/HKARLI/flutter_json_app/master/images/detail.png)
 
 ## Getting Started
 
