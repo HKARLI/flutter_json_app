@@ -2,6 +2,10 @@
 
 A new Flutter application.
 
+# demo
+
+![Screenshot](https://raw.githubusercontent.com/HKARLI/flutter_json_app/master/images/drawe.png)
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
